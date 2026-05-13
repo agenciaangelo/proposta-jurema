@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta — Dublagem e Tradução de Aulas | Agência Ângelo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lj: #E8601A;
+    --lj2: #F07A35;
+    --lj3: #C44D0E;
+    --dark: #0C0C14;
+    --dark2: #141420;
+    --dark3: #1C1C2A;
+    --creme: #FAF8F4;
+    --creme2: #F0EDE6;
+    --texto: #18181F;
+    --suave: #6A6A7E;
+    --tw: rgba(255,255,255,0.88);
+    --ts: rgba(255,255,255,0.42);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(12,12,20,0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0 60px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--lj); }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lj); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 100px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Textura de pontos */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(232,96,26,0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+  }
+
+  /* Gradiente de sobreposição */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(12,12,20,0.4) 0%,
+      rgba(12,12,20,0.0) 40%,
+      rgba(232,96,26,0.12) 100%
+    );
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: rise 0.8s 0.15s forwards;
+  }
+
+  .hero-eyebrow span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--lj);
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    flex: 0 0 28px;
+    height: 1px;
+    background: var(--lj);
+    opacity: 0.6;
+  }
+
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 7vw, 82px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: rise 0.8s 0.3s forwards;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--lj2);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ts);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-top: 20px;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: rise 0.8s 0.45s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 32px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: rise 0.8s 0.6s forwards;
+  }
+
+  .hm-item {
+    padding: 0 36px 0 0;
+    margin-right: 36px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .hm-item:last-child { border-right: none; margin-right: 0; }
+
+  .hm-item label {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 5px;
+  }
+  .hm-item span {
+    font-size: 14px;
+    color: var(--tw);
+    font-weight: 400;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LAYOUT ── */
+  .sec { padding: 88px 60px; }
+  .sec-inner { max-width: 900px; margin: 0 auto; }
+  .sec-dark { background: var(--dark2); }
+  .sec-dark2 { background: var(--dark3); }
+  .divisor { border: none; border-top: 1px solid var(--creme2); }
+
+  /* ── HEADER ── */
+  .sh {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 44px;
+  }
+
+  .sh-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--lj);
+    flex-shrink: 0;
+  }
+
+  .sh-t {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--texto);
+    line-height: 1.1;
+  }
+
+  .sec-dark .sh-t,
+  .sec-dark2 .sh-t { color: white; }
+  .sec-dark .sh-n,
+  .sec-dark2 .sh-n { color: var(--lj2); }
+
+  /* ── O QUE É ── */
+  .oque-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .oque-card {
+    background: white;
+    border: 1px solid var(--creme2);
+    border-radius: 12px;
+    padding: 28px;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .oque-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.07); }
+
+  .oque-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-style: italic;
+    color: var(--lj);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .oque-card h4 { font-size: 14px; font-weight: 500; color: var(--texto); margin-bottom: 7px; }
+  .oque-card p  { font-size: 13px; color: var(--suave); line-height: 1.65; }
+
+  /* ── PLANOS ── */
+  .planos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .plano {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s;
+  }
+  .plano:hover { transform: translateY(-3px); }
+
+  .plano::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .plano.rec::before {
+    background: linear-gradient(90deg, var(--lj3), var(--lj2));
+  }
+
+  .plano-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lj);
+    background: rgba(232,96,26,0.1);
+    border: 1px solid rgba(232,96,26,0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .plano-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+  .plano-nome em { font-style: italic; color: var(--lj2); }
+
+  .plano-valor {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .plano-valor sup {
+    font-size: 22px;
+    vertical-align: super;
+    color: var(--lj);
+    margin-right: 3px;
+  }
+
+  .plano-ref {
+    font-size: 12px;
+    color: var(--ts);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .plano-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .plano-ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.5;
+  }
+
+  .plano-ul li::before {
+    content: '✓';
+    color: var(--lj);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── PRÓXIMAS AULAS ── */
+  .proximas-txt {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--suave);
+    line-height: 1.85;
+    max-width: 660px;
+    margin-bottom: 28px;
+  }
+
+  .criterio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .criterio {
+    background: white;
+    border: 1px solid var(--creme2);
+    border-radius: 10px;
+    padding: 24px 22px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .criterio:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.06); }
+
+  .criterio-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .criterio h4 { font-size: 13.5px; font-weight: 500; color: var(--texto); margin-bottom: 6px; }
+  .criterio p  { font-size: 12.5px; color: var(--suave); line-height: 1.65; }
+
+  /* ── PRAZO E PAGAMENTO ── */
+  .pp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .pp-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .pp-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lj);
+    margin-bottom: 12px;
+  }
+
+  .pp-h {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .pp-p {
+    font-size: 13.5px;
+    color: var(--ts);
+    line-height: 1.75;
+  }
+
+  .pp-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .pp-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pp-step-dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(232,96,26,0.12);
+    border: 1px solid rgba(232,96,26,0.3);
+    color: var(--lj);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pp-step p {
+    font-size: 13px;
+    color: var(--ts);
+    line-height: 1.65;
+  }
+  .pp-step p strong { color: var(--tw); }
+
+  /* ── CTA FINAL ── */
+  .cta-sec {
+    background: var(--dark);
+    padding: 88px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-sec::before {
+    content: '';
+    position: absolute;
+    bottom: -120px; right: -80px;
+    width: 600px; height: 500px;
+    background: radial-gradient(ellipse, rgba(232,96,26,0.16) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .cta-txt h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .cta-txt h2 em { font-style: italic; color: var(--lj2); }
+
+  .cta-txt p {
+    font-size: 15px;
+    color: var(--ts);
+    line-height: 1.75;
+    max-width: 480px;
+  }
+
+  .wpp-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(232,96,26,0.1);
+    border: 1px solid rgba(232,96,26,0.3);
+    color: var(--lj2);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .wpp-cta:hover { background: rgba(232,96,26,0.18); border-color: rgba(232,96,26,0.5); }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 36px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .ft-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+  .ft-logo span { color: var(--lj); }
+
+  .ft-info {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero, .sec, .cta-sec { padding: 80px 28px 60px; }
+    .hero { padding-top: 100px; }
+    .oque-grid, .planos, .pp-grid, .criterio-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-meta { gap: 20px; }
+    .hm-item { border-right: none; margin-right: 0; padding-right: 0; }
+    footer { padding: 32px 24px; }
+    .ft-info { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><span>Agência</span> Ângelo</a>
+  <ul class="nav-links">
+    <li><a href="#servico">Serviço</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#prazo">Prazo e Pagamento</a></li>
+    <li><a href="#proximas">Próximas Aulas</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span>Proposta de Serviço · Produção Audiovisual</span></div>
+    <h1 class="hero-h1">
+      Tradução, <em>Dublagem</em><br>e Edição de Aulas
+    </h1>
+    <p class="hero-sub">Seu curso em inglês, acessível em português — com a mesma qualidade e clareza da aula original.</p>
+    <div class="hero-meta">
+      <div class="hm-item"><label>Preparado para</label><span>Jurema Pinheiro</span></div>
+      <div class="hm-item"><label>Preparado por</label><span>Adson Ângelo</span></div>
+      <div class="hm-item"><label>Referência</label><span>Aula 1 · 16 minutos</span></div>
+      <div class="hm-item"><label>Data</label><span>Maio de 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É O SERVIÇO -->
+<section id="servico" class="sec">
+  <div class="sec-inner">
+    <div class="sh"><span class="sh-n">01.</span><h2 class="sh-t">O que está incluso</h2></div>
+    <div class="oque-grid">
+      <div class="oque-card">
+        <div class="oque-num">01</div>
+        <h4>Tradução e dublagem do áudio</h4>
+        <p>O áudio original em inglês da professora é substituído por uma narração em português, mantendo o ritmo e o conteúdo da aula. O vídeo fica completamente acessível sem depender de legendas.</p>
+      </div>
+      <div class="oque-card">
+        <div class="oque-num">02</div>
+        <h4>Tradução dos slides (opcional)</h4>
+        <p>Todos os textos exibidos nos slides durante a aula são adaptados para o português, garantindo que imagem e áudio estejam 100% alinhados no idioma.</p>
+      </div>
+      <div class="oque-card">
+        <div class="oque-num">03</div>
+        <h4>Edição e sincronização</h4>
+        <p>O novo áudio é sincronizado com o vídeo original de forma fluida, com ajustes de ritmo para que a experiência de assistir seja natural e agradável.</p>
+      </div>
+      <div class="oque-card">
+        <div class="oque-num">04</div>
+        <h4>Entrega em alta qualidade</h4>
+        <p>O vídeo final é entregue no mesmo formato e resolução do original, pronto para ser assistido em qualquer plataforma ou dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divisor">
+
+<!-- PLANOS -->
+<section id="planos" class="sec sec-dark">
+  <div class="sec-inner">
+    <div class="sh"><span class="sh-n">02.</span><h2 class="sh-t">Planos para a Aula 1</h2></div>
+    <p style="color:var(--ts); font-size:14.5px; line-height:1.8; max-width:580px; margin-bottom:40px;">Referência: vídeo de <strong style="color:var(--tw);">16 minutos</strong>. Esta primeira aula serve como piloto — para você avaliar o resultado e decidir como prosseguir com as demais.</p>
+
+    <div class="planos">
+      <!-- Plano 1 -->
+      <div class="plano">
+        <div class="plano-badge">Plano 01</div>
+        <div class="plano-nome">Dublagem<br><em>em português</em></div>
+        <div class="plano-valor"><sup>R$</sup>250<span style="font-size:26px; color:rgba(255,255,255,0.4)">,00</span></div>
+        <div class="plano-ref">pagamento único · referência 16 min</div>
+        <ul class="plano-ul">
+          <li>Tradução completa do conteúdo em inglês</li>
+          <li>Dublagem: áudio da professora em português</li>
+          <li>Sincronização de áudio e vídeo</li>
+          <li>Entrega em alta qualidade</li>
+          <li>Slides mantidos no idioma original</li>
+        </ul>
+      </div>
+
+      <!-- Plano 2 -->
+      <div class="plano rec">
+        <div class="plano-badge">★ Plano 02 — Completo</div>
+        <div class="plano-nome">Dublagem + Slides<br><em>100% em português</em></div>
+        <div class="plano-valor"><sup>R$</sup>300<span style="font-size:26px; color:rgba(255,255,255,0.4)">,00</span></div>
+        <div class="plano-ref">pagamento único · referência 16 min</div>
+        <ul class="plano-ul">
+          <li>Tradução completa do conteúdo em inglês</li>
+          <li>Dublagem: áudio da professora em português</li>
+          <li>Sincronização de áudio e vídeo</li>
+          <li>Entrega em alta qualidade</li>
+          <li>Tradução de todos os slides para português</li>
+          <li>Experiência 100% em português — áudio e visual</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRAZO E PAGAMENTO -->
+<section id="prazo" class="sec sec-dark2">
+  <div class="sec-inner">
+    <div class="sh"><span class="sh-n">03.</span><h2 class="sh-t">Prazo e pagamento</h2></div>
+    <div class="pp-grid">
+
+      <div class="pp-card">
+        <div class="pp-label">Prazo de entrega</div>
+        <div class="pp-h">48 horas úteis</div>
+        <p class="pp-p">O prazo começa a contar a partir da confirmação do pagamento de 50% do valor. Após a entrega, você avalia o resultado e só então realiza o pagamento final.</p>
+      </div>
+
+      <div class="pp-card">
+        <div class="pp-label">Forma de pagamento</div>
+        <div class="pp-h">Em 2 etapas</div>
+        <div class="pp-steps">
+          <div class="pp-step">
+            <div class="pp-step-dot">1</div>
+            <p><strong>50% no início</strong> — confirmado o pagamento, iniciamos imediatamente a edição da aula.</p>
+          </div>
+          <div class="pp-step">
+            <div class="pp-step-dot">2</div>
+            <p><strong>50% na entrega</strong> — após receber e aprovar o vídeo finalizado.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMAS AULAS -->
+<section id="proximas" class="sec">
+  <div class="sec-inner">
+    <div class="sh"><span class="sh-n">04.</span><h2 class="sh-t">E as próximas aulas?</h2></div>
+    <p class="proximas-txt">Como as aulas do curso serão liberadas gradualmente, cada vídeo será avaliado individualmente. O principal fator que influencia o valor é a <strong>duração do vídeo</strong> — quanto mais longo, maior o trabalho de tradução, dublagem e edição envolvido.</p>
+    <p class="proximas-txt" style="margin-bottom:40px;">Quando você tiver o tempo total de horas do curso, podemos também avaliar um <strong>pacote completo</strong>, com condições especiais pelo volume.</p>
+
+    <div class="criterio-grid">
+      <div class="criterio">
+        <span class="criterio-icon">⏱</span>
+        <h4>Duração do vídeo</h4>
+        <p>O principal fator de precificação. Vídeos com a mesma duração da Aula 1 (16 min) mantêm o mesmo valor do plano escolhido.</p>
+      </div>
+      <div class="criterio">
+        <span class="criterio-icon">📑</span>
+        <h4>Complexidade dos slides</h4>
+        <p>Aulas com muitos textos nos slides demandam mais trabalho de edição. Isso é avaliado caso a caso.</p>
+      </div>
+      <div class="criterio">
+        <span class="criterio-icon">📦</span>
+        <h4>Pacote do curso completo</h4>
+        <p>Quando o volume total de horas for conhecido, avaliamos uma proposta de pacote com condições especiais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <div class="cta-txt">
+      <h2>Pronta para começar<br>com a <em>Aula 1?</em></h2>
+      <p>Fico à disposição e aguardo o seu retorno pelo WhatsApp. Escolha o plano que preferir e já iniciamos assim que confirmar o pagamento.</p>
+    </div>
+    <a href="#" class="wpp-cta">💬 Responder pelo WhatsApp</a>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="ft-logo"><span>Agência</span> Ângelo</div>
+  <div class="ft-info">
+    Adson Ângelo · contato@agenciaangelo.com.br<br>
+    Proposta válida por 15 dias · Maio 2026
+  </div>
+</footer>
+
+</body>
+</html>
